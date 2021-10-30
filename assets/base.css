@@ -1,3 +1,13 @@
+/* custom fonts */
+@font-face {
+  font-family: "Opposite Bold";
+  src: url("Opposit-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "Byrd Regular";
+  src: url("Byrd-Regular.otf") format("opentype");
+}
+
 /* Color custom properties */
 
 :root,
@@ -594,7 +604,7 @@ h6:empty {
 }
 
 .circle-divider::after {
-  content: '\2022';
+  content: "\2022";
   margin: 0 1.3rem 0 1.5rem;
 }
 
@@ -716,7 +726,7 @@ summary::-webkit-details-marker {
   z-index: 2;
   display: block;
   cursor: default;
-  content: ' ';
+  content: " ";
   background: transparent;
 }
 
@@ -1243,10 +1253,10 @@ deferred-media {
 /* Button - other */
 
 .button:disabled,
-.button[aria-disabled='true'],
+.button[aria-disabled="true"],
 .button.disabled,
 .customer button:disabled,
-.customer button[aria-disabled='true'],
+.customer button[aria-disabled="true"],
 .customer button.disabled {
   cursor: not-allowed;
   opacity: 0.5;
@@ -1566,7 +1576,7 @@ details[open] > .share-button__fallback {
   resize: vertical;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   display: inline-block;
   width: auto;
   margin-right: 0.5rem;
@@ -1689,7 +1699,7 @@ input[type='checkbox'] {
   margin: 0;
 }
 
-.quantity__input[type='number'] {
+.quantity__input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -1847,6 +1857,18 @@ input[type='checkbox'] {
   display: block;
   position: relative;
   background-color: rgb(var(--color-background));
+  border-top: 8px solid #e8effa;
+}
+
+.header-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  background-color: rgb(var(--color-foreground));
+  height: 2px;
+  z-index: 1;
 }
 
 .header-wrapper--border-bottom {
@@ -1855,7 +1877,7 @@ input[type='checkbox'] {
 
 .header {
   display: grid;
-  grid-template-areas: 'left-icon heading icons';
+  grid-template-areas: "left-icon heading icons";
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   padding-top: 1rem;
@@ -1875,21 +1897,21 @@ input[type='checkbox'] {
   .header--top-left,
   .header--middle-left:not(.header--has-menu) {
     grid-template-areas:
-      'heading icons'
-      'navigation navigation';
+      "heading icons"
+      "navigation navigation";
     grid-template-columns: 1fr auto;
   }
 
   .header--middle-left {
-    grid-template-areas: 'heading navigation icons';
-    grid-template-columns: auto auto 1fr;
+    grid-template-areas: "navigation heading icons";
+    grid-template-columns: 1fr 1fr auto;
     column-gap: 2rem;
   }
 
   .header--top-center {
     grid-template-areas:
-      'left-icon heading icons'
-      'navigation navigation navigation';
+      "left-icon heading icons"
+      "navigation navigation navigation";
   }
 
   .header:not(.header--middle-left) .header__inline-menu {
@@ -1897,7 +1919,7 @@ input[type='checkbox'] {
   }
 }
 
-.header *[tabindex='-1']:focus {
+.header *[tabindex="-1"]:focus {
   outline: none;
 }
 
@@ -1913,7 +1935,7 @@ input[type='checkbox'] {
 .header__heading,
 .header__heading-link {
   grid-area: heading;
-  justify-self: center;
+  justify-self: end;
 }
 
 .header__heading-link {
@@ -1951,7 +1973,7 @@ input[type='checkbox'] {
 
   .header__heading,
   .header__heading-link {
-    justify-self: start;
+    justify-self: end;
   }
 
   .header--top-center .header__heading-link,
@@ -2070,7 +2092,7 @@ details[open] .modal-overlay {
 
 details[open] .modal-overlay::after {
   position: absolute;
-  content: '';
+  content: "";
   background-color: rgb(var(--color-foreground), 0.5);
   top: 100%;
   left: 0;
@@ -2210,20 +2232,25 @@ details[open] > .header__icon--menu .icon-hamburger {
   transition: text-decoration var(--duration-short) ease;
 }
 
-.header__menu-item:hover span {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+.header__menu-item::before {
+  position: absolute;
+  content: "";
+  height: 2px;
+  top: 50%;
+  left: 0;
+  background-color: rgb(var(--color-foreground));
+  width: 0;
+  z-index: 20;
+  transition: 0.2s width;
+}
+
+.header__menu-item:hover::before {
+  width: 100%;
 }
 
 .header__active-menu-item {
-  transition: text-decoration-thickness var(--duration-short) ease;
   color: rgb(var(--color-foreground));
-  text-decoration: underline;
   text-underline-offset: 0.3rem;
-}
-
-.header__menu-item:hover .header__active-menu-item {
-  text-decoration-thickness: 0.2rem;
 }
 
 .header__submenu {
@@ -2325,4 +2352,3 @@ details-disclosure > details {
     stroke: CanvasText;
   }
 }
-
